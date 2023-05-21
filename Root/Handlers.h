@@ -4,7 +4,7 @@ void HandlePairing()
 {
     switch (pairingStatus)
     {
-    case NOT_PAIRED:
+    case  NOT_PAIRED:
         break;
     case REQUEST_PAIRING:
         break;
