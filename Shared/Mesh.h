@@ -41,10 +41,18 @@ enum CommandType
     LESS,
     PING
 };
+enum PairingStatus
+{
+    NOT_PAIRED,
+    REQUEST_PAIRING,
+    PAIRING_INITIATED,
+    PAIRING_COMPLETE
+};
 
 struct_message meshMessage;
 struct_pairing pairingData;
 struct_command meshCommand;
+PairingStatus pairingStatus = NOT_PAIRED;
 
 void HandleData();
 void HandlePairing();
@@ -59,9 +67,12 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
 
 void OnDataRecv(const uint8_t *mac_addr, const uint8_t *incomingData, int len)
 {
-    D("Data received from "); PrintMac(mac_addr);
+    D("Data received from ");
+    PrintMac(mac_addr);
     uint8_t type = incomingData[0]; // first message byte is the type of message
-    D(len); D(" bytes of type ");DL(type);
+    D(len);
+    D(" bytes of type ");
+    DL(type);
     switch (type)
     {
     case DATA:
