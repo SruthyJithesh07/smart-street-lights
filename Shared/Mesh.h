@@ -67,6 +67,7 @@ void OnDataRecv(const uint8_t *recd_from, const uint8_t *incomingData, int len)
 // Function to get the saved channel from EEPROM.
 void GetSavedChannel()
 {
+    DL("Get Saved Channel");
     // Variable to hold the saved channel.
     int savedChannel;
 
@@ -94,11 +95,9 @@ void GetSavedChannel()
 // Function to save the pairing channel to EEPROM.
 void SetSavedChannel()
 {
-    // Write the pairing channel to the first location of EEPROM.
-    EEPROM.write(0, pairingData.channel);
-
-    // Commit changes to EEPROM.
-    EEPROM.commit();
+    DL("Set Saved Channel");
+    EEPROM.write(0, pairingData.channel); // Write the pairing channel to the first location of EEPROM.
+    EEPROM.commit(); // Commit changes to EEPROM.
 }
 
 // If SAVE_CHANNEL is not defined, GetSavedChannel and SetSavedChannel do nothing.
@@ -110,12 +109,14 @@ void SetSavedChannel() {}
 // Function to remove a peer from ESP-NOW.
 void RemovePeer(const uint8_t *mac_to_rem)
 {
+    D("Remove Peer: "); PrintMac(mac_to_rem);
     esp_now_del_peer(mac_to_rem);
 }
 
 // Function to add a peer to ESP-NOW.
 bool AddPeer(const uint8_t *mac_to_add, uint8_t chan)
 {
+    D("Add Peer: "); PrintMac(mac_to_add);
     // If peer already exists, return from function.
     if (esp_now_is_peer_exist(mac_to_add)) return true;
 
