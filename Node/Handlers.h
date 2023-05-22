@@ -1,3 +1,5 @@
+uint8_t* serverAddress;
+
 void HandleData() {
     // Nothing to do here currently
 }

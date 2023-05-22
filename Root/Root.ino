@@ -15,6 +15,10 @@ void SetupEspNow() {
   esp_now_register_recv_cb(OnDataRecv);
 }
 
+void SendCommand(uint8_t node, CommandType cmd) {
+  
+}
+
 void setup() {
   SetupIO();
   WiFi.mode(WIFI_STA);
@@ -22,4 +26,15 @@ void setup() {
   Serial.println("Setup done");
 }
 
-void loop() {}
+void loop() {
+  Serial.println("Enter Node: ");
+  while (Serial.available() == 0) {}
+  String node = Serial.readString();
+  node.trim();
+  Serial.println("Enter Command: ");
+  while (Serial.available() == 0) {}
+  String scmd = Serial.readString();
+  scmd.trim();
+  CommandType cmd = scmd=="ON"? TURNON:TURNOFF;
+  SendCommand(node.toInt(), cmd);
+}

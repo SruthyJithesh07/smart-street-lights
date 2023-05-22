@@ -9,7 +9,9 @@
 
 #define DEBUG    (1)      // Define DEBUG to switch between debug and non-debug modes.
 #define CHANNEL  5        // Define default channel
-#define SAVE_CHANNEL (1)  // Define SAVE_CHANNEL to save last used channel.
+#define SAVE_CHANNEL  (1) // Define SAVE_CHANNEL to save last used channel.
+#define MAX_CHANNEL   11  // Define SAVE_CHANNEL to save last used channel.
+#define MESH_TIMEOUT  250
 
 // Conditional compilation depending on whether DEBUG is defined or not.
 #ifdef DEBUG
@@ -19,7 +21,7 @@
   #define DL(x)     Serial.println(x)
   
   // Loop delay in milliseconds for debugging mode.
-  #define LOOPDEL   500                 
+  #define LOOPDELAY   500                 
 #else
   // If not in debug mode, these macros do nothing.
   #define D(x)
@@ -27,7 +29,7 @@
   #define DL(x)
 
   // Loop delay in milliseconds for non-debugging mode.
-  #define LOOPDEL   2000                
+  #define LOOPDELAY   2000                
 #endif
 
 // Function to print MAC address in hexadecimal format, only active in debug mode.

@@ -2,6 +2,7 @@
 #ifndef MESH_H
 #define MESH_H
 
+#include <EEPROM.h>
 #include "Common.h"
 #include "MeshDataTypes.h"
 
@@ -9,6 +10,8 @@
 struct_message meshMessage;
 struct_pairing pairingData;
 struct_command meshCommand;
+uint8_t channel = CHANNEL;
+unsigned long lastSent = 0;
 
 // Pairing status variable initialized to NOT_PAIRED.
 PairingStatus pairingStatus = NOT_PAIRED;
@@ -20,17 +23,17 @@ void HandlePairing();
 void HandleCommand();
 
 // Callback function for data sent.
-void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
+void OnDataSent(const uint8_t *sent_to, esp_now_send_status_t status)
 {
     D(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success to " : "Delivery Fail to ");
-    PrintMac(mac_addr);
+    PrintMac(sent_to);
 }
 
 // Callback function for data received.
-void OnDataRecv(const uint8_t *mac_addr, const uint8_t *incomingData, int len)
+void OnDataRecv(const uint8_t *recd_from, const uint8_t *incomingData, int len)
 {
     D("Data received from ");
-    PrintMac(mac_addr);
+    PrintMac(recd_from);
     uint8_t type = incomingData[0]; // First byte of the message is the type of message.
 
     D(len);
@@ -125,7 +128,7 @@ bool AddPeer(const uint8_t *mac_to_add, uint8_t chan)
     
     peer.channel = chan; // Assign channel
     peer.encrypt = false; // Disable encryption.
-    memcpy(peer.peer_addr, mac_addr, sizeof(uint8_t[6])); // Copy the mac address
+    memcpy(peer.peer_addr, mac_to_add, sizeof(uint8_t[6])); // Copy the mac address
 
     // Add the peer to ESP-NOW.
     if (esp_now_add_peer(&peer) != ESP_OK)
