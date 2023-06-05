@@ -24,4 +24,6 @@ We are yet to build the following
 - Efficiency improvement with AI
 
 Here is a short video we did while working.
-[smart-street-lights.webm](https://github.com/i47-Labs/smart-street-lights/assets/523214/70609014-299f-4d1c-81de-4faf3974a2e7)
+
+
+[smart-street-lights.webm](https://github.com/i47-Labs/smart-street-lights/assets/523214/e1e3a815-3f30-42df-b7fd-9727bddf4906)
