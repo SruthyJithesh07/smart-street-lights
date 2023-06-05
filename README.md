@@ -13,5 +13,5 @@ Also, we can save on CapEx as the bulb life gets extended to more days.
 
 
 
-Uploading smart-street-lights.mp4…
+(https://github.com/i47-Labs/smart-street-lights/blob/main/smart-street-lights.mp4)
 
