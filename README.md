@@ -26,4 +26,8 @@ We are yet to build the following
 Here is a short video we did while working.
 
 
-[smart-street-lights.webm](https://github.com/i47-Labs/smart-street-lights/assets/523214/e1e3a815-3f30-42df-b7fd-9727bddf4906)
+
+
+
+https://github.com/i47-Labs/smart-street-lights/assets/523214/2bb0c9f6-9369-448a-a570-caef3fc2f183
+
