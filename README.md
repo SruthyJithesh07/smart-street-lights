@@ -12,3 +12,6 @@ Nearly 8 Terra Watt Hours of energy is used for street-lighting in India. Just b
 Also, we can save on CapEx as the bulb life gets extended to more days.
 
 
+
+Uploading smart-street-lights.mp4…
+
